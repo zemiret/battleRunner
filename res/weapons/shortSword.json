@@ -1,0 +1,6 @@
+{
+  "name": "Short Sword",
+  "type": "SHORT_RANGE",
+  "baseDamage": 4,
+  "speed": 2
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Magic wand",
+  "type": "MAGIC",
+  "baseDamage": 4,
+  "speed": 1
+}

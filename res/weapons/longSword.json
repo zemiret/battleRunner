@@ -1,0 +1,6 @@
+{
+  "name": "Long Sword",
+  "type": "SHORT_RANGE",
+  "baseDamage": 6,
+  "speed": 3
+}

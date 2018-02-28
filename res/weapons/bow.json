@@ -1,0 +1,6 @@
+{
+  "name": "Bow",
+  "type": "LONG_RANGE",
+  "baseDamage": 4,
+  "speed": 1
+}
