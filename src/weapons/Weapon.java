@@ -16,6 +16,8 @@ public abstract class Weapon implements IWeapon, ILoadable, ICopyable<Weapon> {
     private WeaponTypes type;
     private int speed;
 
+    private int speedPenalty;
+
     static private HashMap<WeaponTypes, String> weaponTypesNames = new HashMap<>();
 
     static {
@@ -29,9 +31,13 @@ public abstract class Weapon implements IWeapon, ILoadable, ICopyable<Weapon> {
         this.baseDamage = copyRef.baseDamage;
         this.type = copyRef.type;
         this.speed = copyRef.speed;
+
+        this.speedPenalty = 0;
     }
 
-    Weapon() {}
+    Weapon() {
+        this.speedPenalty = 0;
+    }
 
     @Override
     public void load(File file) {
@@ -57,11 +63,24 @@ public abstract class Weapon implements IWeapon, ILoadable, ICopyable<Weapon> {
                 "Speed: " + this.speed + "\n";
     }
 
+    public int getSpeedPenalty() {
+        return speedPenalty;
+    }
+
+    public void tickTurn() {
+        this.speedPenalty -= 1;
+    }
+
+    private void setSpeedPenalty() {
+        this.speedPenalty = this.speed;
+    }
+
     /**
      * @return int baseDamage + 1k4
      * */
     @Override
     public int lightAttack() {
+        this.setSpeedPenalty();
         return (int)(Math.round(Math.random() * 4) + baseDamage);
     }
 
@@ -70,14 +89,16 @@ public abstract class Weapon implements IWeapon, ILoadable, ICopyable<Weapon> {
      * */
     @Override
     public int mediumAttack() {
+        this.setSpeedPenalty();
         return (int)(Math.round(Math.random() * 6) + baseDamage);
     }
 
     /**
      * @return int baseDamage + 1k8
-     * */
+     */
     @Override
     public int heavyAttack() {
-        return (int)(Math.round(Math.random() * 8) + baseDamage);
+        this.setSpeedPenalty();
+        return (int) (Math.round(Math.random() * 8) + baseDamage);
     }
 }
