@@ -2,7 +2,7 @@ package character;
 
 import weapons.Weapon;
 
-public class Character {
+public class Hero {
 
     private String name;
     private int hp;
@@ -10,7 +10,7 @@ public class Character {
 
     private Weapon weapon;
 
-    public Character(String name, int hp, int strength, Weapon weapon) {
+    public Hero(String name, int hp, int strength, Weapon weapon) {
         this.name = name;
         this.hp = hp;
         this.strength = strength;
