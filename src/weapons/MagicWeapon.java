@@ -1,8 +1,13 @@
 package weapons;
 
 public class MagicWeapon extends Weapon {
-    public MagicWeapon(Weapon copyRef) {
+
+    private MagicWeapon(Weapon copyRef) {
         super(copyRef);
+    }
+
+    MagicWeapon() {
+        super();
     }
 
     @Override

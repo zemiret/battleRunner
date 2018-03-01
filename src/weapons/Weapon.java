@@ -4,11 +4,11 @@ import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
 import utils.ICopyable;
 import utils.ILoadable;
-import utils.ItemLoadingException;
 
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.lang.String;
 
 public abstract class Weapon implements IWeapon, ILoadable, ICopyable<Weapon> {
     private String name;
@@ -16,7 +16,13 @@ public abstract class Weapon implements IWeapon, ILoadable, ICopyable<Weapon> {
     private WeaponTypes type;
     private int speed;
 
-    private HashMap<WeaponTypes, String> weaponTypesNames = new HashMap<>();
+    static private HashMap<WeaponTypes, String> weaponTypesNames = new HashMap<>();
+
+    static {
+        weaponTypesNames.put(WeaponTypes.SHORT_RANGE, "Short range");
+        weaponTypesNames.put(WeaponTypes.LONG_RANGE, "Long range");
+        weaponTypesNames.put(WeaponTypes.MAGIC, "Magic");
+    }
 
     Weapon(Weapon copyRef) {
         this.name = copyRef.name;
@@ -25,20 +31,12 @@ public abstract class Weapon implements IWeapon, ILoadable, ICopyable<Weapon> {
         this.speed = copyRef.speed;
     }
 
-    public Weapon(String filepath) {
-        this.load(filepath);
-
-        weaponTypesNames.put(WeaponTypes.SHORT_RANGE, "Short range");
-        weaponTypesNames.put(WeaponTypes.LONG_RANGE, "Long range");
-        weaponTypesNames.put(WeaponTypes.MAGIC, "Magic");
-    }
+    Weapon() {}
 
     @Override
-    public void load(String filepath) {
+    public void load(File file) {
         try {
-            File file = new File(filepath);
             FileReader reader = new FileReader(file);
-
             JsonObject weaponObj = Json.parse(reader).asObject();
 
             this.name = weaponObj.getString("name", "Unknown Weapon");
@@ -48,14 +46,13 @@ public abstract class Weapon implements IWeapon, ILoadable, ICopyable<Weapon> {
 
         } catch (Exception err) {
             err.printStackTrace();
-//            throw new ItemLoadingException();
         }
     }
 
     @Override
     public String stats() {
         return name + "\n" +
-                "Type: " + this.weaponTypesNames.get(this.type) + "\n" +
+                "Type: " + Weapon.weaponTypesNames.get(this.type) + "\n" +
                 "Base damage: " + this.baseDamage + "\n" +
                 "Speed: " + this.speed + "\n";
     }

@@ -15,7 +15,7 @@ public class JSONTester {
 
 
 /*
-        String jsonString = "{\n" +
+        WeaponTypes jsonString = "{\n" +
                 "  \"order\": 4711,\n" +
                 "  \"items\": [\n" +
                 "    {\n" +

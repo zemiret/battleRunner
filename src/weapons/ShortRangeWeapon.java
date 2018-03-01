@@ -6,6 +6,10 @@ public class ShortRangeWeapon extends Weapon {
         super(copyRef);
     }
 
+    ShortRangeWeapon() {
+        super();
+    }
+
     @Override
     public Weapon copy() {
         return new ShortRangeWeapon(this);

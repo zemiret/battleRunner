@@ -2,8 +2,12 @@ package weapons;
 
 public class LongRangeWeapon extends Weapon {
 
-    public LongRangeWeapon(Weapon copyRef) {
+    private LongRangeWeapon(Weapon copyRef) {
         super(copyRef);
+    }
+
+    LongRangeWeapon() {
+        super();
     }
 
     @Override
