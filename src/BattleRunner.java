@@ -36,10 +36,11 @@ public class BattleRunner {
             try {
                 InputStreamReader streamReader = new InputStreamReader(System.in);
                 BufferedReader bufferedReader = new BufferedReader(streamReader);
-                chosenAttack = Integer.parseInt(bufferedReader.readLine());
-
+                chosenAttack = Integer.parseInt(bufferedReader.readLine()) ;
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NumberFormatException e) {
+                chosenAttack = 0;
             }
 
         } while (chosenAttack > 3 || chosenAttack < 1);
